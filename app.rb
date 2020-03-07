@@ -1,7 +1,16 @@
 require 'sinatra'
+require './models/post'
 
 get '/' do
-  'Hello World　文言追加 天才　ヤッホー'
+  @posts = Post.all
+  erb :index
+end
+
+post '/posts' do
+  title = params[:title]
+  post = Post.new(title: title)
+  post.save
+  redirect '/', 303
 end
 
 get '/health_check' do

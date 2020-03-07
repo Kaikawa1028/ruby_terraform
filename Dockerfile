@@ -3,7 +3,12 @@
  ENV APP_ROOT /app
 
  WORKDIR $APP_ROOT
- # まずは Gemfile のみを ADD し bundle install を行います
+
+ RUN apt-get update && apt-get install -y \
+     default-mysql-client \
+     --no-install-recommends && \
+     rm -rf /var/lib/apt/lists/*
+
  ADD Gemfile $APP_ROOT
  ADD Gemfile.lock $APP_ROOT
  RUN \
