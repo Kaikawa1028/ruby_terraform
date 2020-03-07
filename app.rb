@@ -14,5 +14,5 @@ post '/posts' do
 end
 
 get '/health_check' do
-  'okOK'
+  'ok'
 end
